@@ -15,8 +15,43 @@ const Gallery = () => {
     },
   })
 
-  console.log(response)
-  return <div>Gallery</div>
+  if (response.isLoading)
+    return (
+      <div className='image-container'>
+        <h4>Loading...</h4>
+      </div>
+    )
+
+  if (response.isError)
+    return (
+      <div className='image-container'>
+        <h4>There was an error...</h4>
+      </div>
+    )
+
+  const result = response.data.results
+  if (result.length < 1)
+    return (
+      <div className='image-container'>
+        <h4>No images found...</h4>
+      </div>
+    )
+
+  return (
+    <div className='image-container'>
+      {result.map((item) => {
+        const url = item?.urls?.regular
+        return (
+          <img
+            key={item.id}
+            src={url}
+            alt={item.alt_description}
+            className='img'
+          />
+        )
+      })}
+    </div>
+  )
 }
 
 export default Gallery

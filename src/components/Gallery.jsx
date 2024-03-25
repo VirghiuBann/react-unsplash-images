@@ -8,7 +8,7 @@ const Gallery = () => {
   const { searchQuery } = useGlobalContext()
   const secretKey = import.meta.env.VITE_ACCESS_KEY
   const response = useQuery({
-    queryKey: ['images'],
+    queryKey: ['images', searchQuery],
     queryFn: async () => {
       const result = await axios.get(
         `${url}?client_id=${secretKey}&query=${searchQuery}`

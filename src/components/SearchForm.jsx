@@ -1,4 +1,5 @@
 const SearchForm = () => {
+  console.log(import.meta.env)
   const handleSubmit = (e) => {
     e.preventDefault()
     const searchValue = e.target.elements.search.value
